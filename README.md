@@ -186,3 +186,29 @@ The keyboard modifiers are:
 - up
 - down
 - alt
+
+### Two-way data binding
+
+Instead of listening to an event on an element and then echo or store that latest value to another property by setting it manually, we can use two-way data binding by using the `v-model`
+
+    // ---- .js ----
+    new Vue({
+      el: '#two-way-data-binding',
+      data: {
+        name: '',
+        age: '',
+      },
+      methods: {},
+    });
+
+    // ---- .html ----
+    <div id="two-way-data-binding">
+    <h1>Two way data-binding</h1>
+  
+    <label>Name:</label>
+    <input type="text" v-model="name" />
+    <span>{{ name }}</span>
+    <label>Age:</label>
+    <input type="text" v-model="age" />
+    <span>{{ age }}</span>
+  </div>

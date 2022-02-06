@@ -48,3 +48,12 @@ new Vue({
     },
   },
 });
+
+new Vue({
+  el: '#two-way-data-binding',
+  data: {
+    name: '',
+    age: '',
+  },
+  methods: {},
+});

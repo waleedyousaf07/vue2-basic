@@ -58,6 +58,17 @@
     <!-- We can chain modifiers. The keyboard modifiers are -->
   </div>
 
+  <div id="two-way-data-binding">
+    <h1>Two way data-binding</h1>
+  
+    <label>Name:</label>
+    <input type="text" v-model="name" />
+    <span>{{ name }}</span>
+    <label>Age:</label>
+    <input type="text" v-model="age" />
+    <span>{{ age }}</span>
+  </div>
+
   <script src="app.js"></script>
 </body>
 
