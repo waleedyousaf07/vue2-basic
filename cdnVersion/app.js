@@ -10,8 +10,21 @@ new Vue({
     websiteTag: '<a href="https://waleedyousaf07.wixsite.com/portfolio">Portfolio</a>',
   },
   methods: {
-    greet: (time) => {
-      return `Good ${time} ${this.job}`; // not doing `this.data.name` cuz vue js already giving us all the properties upfront 
+    // greet: (time) => {
+    //   return `Good ${time} ${this.job}`; // not doing `this.data.name` cuz vue js already giving us all the properties upfront 
+    // } // in arrow function, `this` doesnt bind to Vue instance but instead to its own lexical parent
+    greet: function (time) {
+      return `Good ${time} ${this.name}`; // not doing `this.data.name` cuz vue js already giving us all the properties upfront 
     }
+  },
+});
+
+new Vue({
+  el: '#events',
+  data: {
+    age: 26,
+  },
+  methods: {
+
   },
 });
