@@ -69,6 +69,19 @@
     <span>{{ age }}</span>
   </div>
 
+  <div id="computed-properties">
+    <h1>Computed Properties</h1>
+  
+    <button v-on:click="a++">Add to A</button>
+    <button @click="b++">Add to B</button>
+  
+    <p>A - {{ a }}</p>
+    <p>B - {{ b }}</p>
+    <p>Age + A => {{ addToA }}</p>
+    <p>Age + B => {{ addToB }}</p>
+    <!-- If we use methods, each time any value is changed, both these method will run even only on clicking one button updates value of one. To make it more efficient, we'll use `computed properties`, which are almost same as methods but will only run the required method. For computed properties, we dont need to call methods` -->
+  </div>
+
   <script src="app.js"></script>
 </body>
 

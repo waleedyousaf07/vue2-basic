@@ -212,3 +212,42 @@ Instead of listening to an event on an element and then echo or store that lates
     <input type="text" v-model="age" />
     <span>{{ age }}</span>
   </div>
+
+### Computed Properties
+
+If we use methods, which return output, in DOM, each time any value is changed, both/all of these methods will run even only on clicking one button updates value of one. To make it more efficient, we'll use `computed properties`, which are almost same as methods but will only run the required method. 
+
+For computed properties, we dont need to call methods
+
+    // ---- .js ----
+    new Vue({
+      el: '#computed-properties',
+      data: {
+        age: 26,
+        a: 0,
+        b: 0,
+      },
+      computed: {
+        addToA: function () {
+          console.log('addToA');
+          return this.a + this.age;
+        },
+        addToB: function () {
+          console.log('addToB');
+          return this.b + this.age;
+        },
+      },
+    });
+
+    // ---- .html ----
+    <div id="computed-properties">
+      <h1>Computed Properties</h1>
+    
+      <button v-on:click="a++">Add to A</button>
+      <button @click="b++">Add to B</button>
+    
+      <p>A - {{ a }}</p>
+      <p>B - {{ b }}</p>
+      <p>Age + A => {{ addToA }}</p>
+      <p>Age + B => {{ addToB }}</p>
+    </div>
