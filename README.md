@@ -76,3 +76,72 @@ We can also store whole elements (stringified) in data properties of Vue instanc
       <input type="text" :value="name" />
       <p v-html="websiteTag"></p>
     </div>
+
+### Events
+
+We can use the events with `v-on:` directive. Alternatively, `@` is `short-hand` for `v-on:`
+We can use alot of DOM events like click, dblclick, mousemove etc. Inside these events, we have access to properties of Vue data.
+
+    <button v-on:click="age++">Add an Year</button>
+    <button @click="age--">Subtract an Year</button>
+
+Alternatively, we can externalize this code and fire some method. No need to call the methods if we dont need to pass any params, Vue will know. But if method is expecting some params, then we need to call them with those. We can use same methods by sometimes passing values for slightly different purposes
+
+    // ---- .js ----
+
+    new Vue({
+      el: '#events',
+      data: {
+        age: 26,
+      },
+      methods: {
+        add: function (val) {
+          this.age += val;
+        },
+        subtract: function (val) {
+          this.age = this.age - val;
+        },
+      },
+    });
+
+    // ---- .html ----
+
+    <button v-on:click="add(1)">Add an Year</button>
+    <button v-on:click="subtract(1)">Subtract an Year</button>
+
+    <button v-on:dblclick="add(10)">Add 10 Years</button>
+    <button v-on:dblclick="subtract(10)">Subtract 10 Years</button>
+
+We can specify if an event needs to be only run once by using `event modifiers`. Event modifiers are also used for other purposes like for preventing the default behaviour of an anchor tag etc.
+
+    <button v-on:click.once="add(10)">Add an Year Only once</button> // event wont run after first click
+
+    <a @click.prevent="click" href="https://waleedyousaf07.wixsite.com/portfolio">Waleed Yousaf</a> // clicking will only call the method `click` and wont redirect to the `href` of anchor tag which is the default behaviour
+
+For DOM events, on trigger, we get access to the `event` property which we can use
+
+    // ---- .js ----
+    new Vue({
+      el: '#events',
+      data: {
+        x: 0,
+        y: 0,
+      },
+      methods: {
+        updateXY: function (event) { // we get this `event` automatically
+          this.x = event.offsetX;
+          this.y = event.offsetY;
+        },
+      },
+    });
+
+    // ---- .html ----
+    
+    <div id="events" v-on:mousemove="updateXY">{{ x }}, {{ y }}</div>
+
+The modifiers are: 
+- stop
+- prevent
+- capture
+- self
+- once

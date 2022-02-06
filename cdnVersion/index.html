@@ -11,13 +11,6 @@
 </head>
 
 <body>
-  <div id="events">
-    <h1>Events</h1>
-    <button v-on:click="age++">Add an Year</button>
-    <button v-on:click="age--">Subtract an Year</button>
-    <p>My age is {{ age }}</p>
-  </div>
-
   <div id="vue-app">
     <h1>{{ greet('Afternoon') }}</h1>
     <!-- <a v-bind:href="website">My portfolio</a> // binding -->
@@ -26,6 +19,33 @@
     <p v-html="websiteTag"></p>
     <p>Name: {{ name }}</p>
     <p>Job: {{ job }}</p>
+  </div>
+
+  <div id="events">
+    <h1>Events</h1>
+  
+    <button v-on:click="age++">Add an Year</button>
+    <button @click="age--">Subtract an Year</button>
+    <br>
+    <!-- v-on: is directive, @ is short hand for v-on:, can use alot of DOM events like click, dblclick, mousemove etc, we have access to properties of Vue data. -->
+  
+    <button v-on:click="add(1)">Add an Year</button>
+    <button v-on:click="subtract(1)">Subtract an Year</button>
+    <br>
+    <!-- Alternatively, we can externalize this code and fire some method. No need to call the methods, Vue will know -->
+  
+    <button v-on:dblclick="add(10)">Add 10 Years</button>
+    <button v-on:dblclick="subtract(10)">Subtract 10 Years</button>
+    <br>
+    <!-- We can use same methods by passing the values -->
+  
+    <button v-on:click.once="add(1)">Add an Year Only once</button>
+    <br>
+    <!-- We can specify if an event needs to be only run once by using `event modifiers`. -->
+    <p>My age is {{ age }}</p>
+    <div id="canvas" v-on:mousemove="updateXY">{{ x }}, {{ y }}</div>
+    <a @click.prevent="click" href="https://waleedyousaf07.wixsite.com/portfolio">Waleed Yousaf</a>
+    <!-- W/o this `.prevent` modifier, on clicking, first it will call the `click` function and then will move to the `href` link. This `.prevent` modifier will prevent this default behaviour. The modifiers are `.stop, .prevent, .capture, .self, .once` -->
   </div>
 
   <script src="app.js"></script>

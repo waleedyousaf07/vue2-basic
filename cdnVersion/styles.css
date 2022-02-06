@@ -3,4 +3,10 @@
   margin-bottom: 48px;
 }
 
-
+#events #canvas {
+  width: 600px;
+  padding: 200px 20px;
+  text-align: center;
+  border: 1px solid #323232;
+  margin-bottom: 16px;
+}

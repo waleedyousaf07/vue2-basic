@@ -23,8 +23,22 @@ new Vue({
   el: '#events',
   data: {
     age: 26,
+    x: 0,
+    y: 0,
   },
   methods: {
-
+    add: function (val) {
+      this.age += val;
+    },
+    subtract: function (val) {
+      this.age = this.age - val;
+    },
+    updateXY: function (event) { // we get this event automatically
+      this.x = event.offsetX;
+      this.y = event.offsetY;
+    },
+    click: function () {
+      alert('Link is clicked!');
+    },
   },
 });
