@@ -26,17 +26,17 @@
   
     <button v-on:click="age++">Add an Year</button>
     <button @click="age--">Subtract an Year</button>
-    <br>
+    <br><br>
     <!-- v-on: is directive, @ is short hand for v-on:, can use alot of DOM events like click, dblclick, mousemove etc, we have access to properties of Vue data. -->
   
     <button v-on:click="add(1)">Add an Year</button>
     <button v-on:click="subtract(1)">Subtract an Year</button>
-    <br>
+    <br><br>
     <!-- Alternatively, we can externalize this code and fire some method. No need to call the methods, Vue will know -->
   
     <button v-on:dblclick="add(10)">Add 10 Years</button>
     <button v-on:dblclick="subtract(10)">Subtract 10 Years</button>
-    <br>
+    <br><br>
     <!-- We can use same methods by passing the values -->
   
     <button v-on:click.once="add(1)">Add an Year Only once</button>
@@ -46,6 +46,16 @@
     <div id="canvas" v-on:mousemove="updateXY">{{ x }}, {{ y }}</div>
     <a @click.prevent="click" href="https://waleedyousaf07.wixsite.com/portfolio">Waleed Yousaf</a>
     <!-- W/o this `.prevent` modifier, on clicking, first it will call the `click` function and then will move to the `href` link. This `.prevent` modifier will prevent this default behaviour. The modifiers are `.stop, .prevent, .capture, .self, .once` -->
+    <h1>Keyboard Events</h1>
+    
+    <label>Name:</label>
+    <input type="text" @keyup="logName" />
+    <label>Age:</label>
+    <input type="text" @keyup.enter="logAge" />
+    <!-- Only fire event after an enter press not on every keyup by modifier -->
+    <label>Skill:</label>
+    <input type="text" @keyup.alt.enter="logAge" />
+    <!-- We can chain modifiers. The keyboard modifiers are -->
   </div>
 
   <script src="app.js"></script>

@@ -1,11 +1,12 @@
 #events, #vue-app {
   border-bottom: 3px dashed #323232;
-  margin-bottom: 48px;
+  margin-bottom: 8px;
+  padding: 16px;
 }
 
 #events #canvas {
   width: 600px;
-  padding: 200px 20px;
+  padding: 50px 20px;
   text-align: center;
   border: 1px solid #323232;
   margin-bottom: 16px;

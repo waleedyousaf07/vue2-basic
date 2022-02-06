@@ -40,5 +40,11 @@ new Vue({
     click: function () {
       alert('Link is clicked!');
     },
+    logName: function () {
+      console.log('You entered name');
+    },
+    logAge: function () {
+      console.log('You entered age');
+    },
   },
 });

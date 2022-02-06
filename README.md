@@ -139,9 +139,50 @@ For DOM events, on trigger, we get access to the `event` property which we can u
     
     <div id="events" v-on:mousemove="updateXY">{{ x }}, {{ y }}</div>
 
-The modifiers are: 
+The mouse event modifiers are: 
 - stop
 - prevent
 - capture
 - self
 - once
+
+We can also use the keyboard events like onkeyup, onkeydown etc.
+
+We can use modifiers to control events like the `.enter` modifier on `keyup` event will only run the method of we press enter key.
+
+We can also chain these modifiers and then they'll work if both of those buttons are typed together
+
+    // ---- .js ----
+    new Vue({
+      el: '#events',
+      data: {},
+      methods: {
+        logName: function () {
+          console.log('You entered name');
+        },
+        logAge: function () {
+          console.log('You entered age');
+        },
+      },
+    });
+
+    // ---- .html ----
+
+    <label>Name:</label>
+    <input type="text" @keyup="logName" />
+    <label>Age:</label>
+    <input type="text" @keyup.enter="logAge" />
+    <label>Skill:</label>
+    <input type="text" @keyup.alt.enter="logAge" />
+
+The keyboard modifiers are:
+- enter
+- tab
+- delete
+- esc
+- space
+- right
+- left
+- up
+- down
+- alt
