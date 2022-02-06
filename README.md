@@ -296,3 +296,34 @@ Also, instead of having that object for class here, we can pass it from the Vue 
     <div v-bind:class="compClasses">
       <span>Ronaldo</span>
     </div>
+
+### Conditional
+
+The directives `v-if`/`v-else-if` and `v-show` are used to conditionally show elements.
+
+For `v-if`, if false, the element will get removed completely from the DOM.
+
+`v-show` is another directive like if but as `v-if` completely removes the element from DOM, `v-show` only adds a style `display: none` and it remains in the DOM but is not visible
+
+    // ---- .js ----
+    new Vue({
+      el: '#conditionals',
+      data: {
+        error: false,
+        success: false,
+      },
+    });
+
+    // ---- .html ----
+    <div id="conditionals">
+      <h1>Conditionals</h1>
+      <button v-on:click="error = !error">Toggle Error</button>
+      <button v-on:click="success = !success">Toggle Success</button>
+    
+      <p v-if="error">There is some error</p> 
+      <p v-else-if="success">Successfully completed</p>
+    
+      // Note: Use on of the `p` tag pairs as they are pointing and manipulating the same Vue instance data properties
+      <p v-show="error">There is some error</p>
+      <p v-show="success">Successfully completed</p>
+    </div>

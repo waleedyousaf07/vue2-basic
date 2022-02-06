@@ -99,6 +99,19 @@
     </div>
   </div>
 
+  <div id="conditionals">
+    <h1>Conditionals</h1>
+    <button v-on:click="error = !error">Toggle Error</button>
+    <button v-on:click="success = !success">Toggle Success</button>
+  
+    <p v-if="error">There is some error</p> <!-- if false, the `p` tag will get removed completely from the DOM -->
+    <p v-else-if="success">Successfully completed</p>
+  
+    <p v-show="error">There is some error</p>
+    <!-- Another directive like if but as `v-if` completely removes the element from DOM, `v-show` only adds a style `display: none` and it remains in the DOM -->
+    <p v-show="success">Successfully completed</p>
+  </div>
+
   <script src="app.js"></script>
 </body>
 
