@@ -251,3 +251,48 @@ For computed properties, we dont need to call methods
       <p>Age + A => {{ addToA }}</p>
       <p>Age + B => {{ addToB }}</p>
     </div>
+
+### Dynamic CSS
+
+We can add classes dynamically to HTML elements by binding the class property through `v-bind` and then passing an object of classes with the boolean values which determine if they are appllied or not.
+
+    // ---- .js ----
+    new Vue({
+      el: '#dynamic-css',
+      data: {
+        available: true,
+      },
+    });
+
+    // ---- .html ----
+    <div id="dynamic-css">    
+      <div v-on:click="available = !available" v-bind:class="{available: available}">
+        <span>Ronaldo</span>
+      </div>
+    </div>
+
+Also, instead of having that object for class here, we can pass it from the Vue instance
+
+    // ---- .js ----
+    new Vue({
+      el: '#dynamic-css',
+      data: {
+        available: true,
+        nearby: false,
+      },
+      computed: {
+        compClasses: function () {
+          return {
+            available: this.available,
+            nearby: this.nearby,
+          }
+        },
+      },
+    });
+
+    // ---- .html ----
+    <button v-on:click="nearby = !nearby">Toggle nearby</button>
+    <button v-on:click="available = !available">Toggle available</button>
+    <div v-bind:class="compClasses">
+      <span>Ronaldo</span>
+    </div>

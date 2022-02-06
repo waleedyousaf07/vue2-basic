@@ -82,6 +82,23 @@
     <!-- If we use methods, each time any value is changed, both these method will run even only on clicking one button updates value of one. To make it more efficient, we'll use `computed properties`, which are almost same as methods but will only run the required method. For computed properties, we dont need to call methods` -->
   </div>
 
+  <div id="dynamic-css">
+    <h1>Dynamic CSS</h1>
+  
+    <h2>Example 1</h2>
+    <div v-on:click="available = !available" v-bind:class="{available: available}">
+      <span>Ronaldo</span>
+    </div>
+  
+    <h2>Example 2</h2>
+    <!-- Instead of having that object for class here, we can pass it from Vue instance -->
+    <button v-on:click="nearby = !nearby">Toggle nearby</button>
+    <button v-on:click="available = !available">Toggle available</button>
+    <div v-bind:class="compClasses">
+      <span>Ronaldo</span>
+    </div>
+  </div>
+
   <script src="app.js"></script>
 </body>
 
