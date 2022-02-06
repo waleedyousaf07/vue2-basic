@@ -4,8 +4,8 @@ new Vue({
   el: '#vue-app',
   // all the data for this instance
   data: {
-    name: 'Waleed',
-    job: 'Programmer',
+    name: 'Batman',
+    job: 'Super Hero',
     website: 'https://waleedyousaf07.wixsite.com/portfolio',
     websiteTag: '<a href="https://waleedyousaf07.wixsite.com/portfolio">Portfolio</a>',
   },
@@ -99,6 +99,21 @@ new Vue({
   data: {
     error: false,
     success: false,
+  },
+  methods: {},
+  computed: {},
+});
+
+new Vue({
+  el: '#looping-v-for',
+  data: {
+    superHeroes: ['Batman', 'Superman', 'Wonder Woman', 'Flash'],
+    realCharacters: [
+      { name: 'Bruce Wayne', age: '42' },
+      { name: 'Kal El', age: '1000' },
+      { name: 'Dianna', age: '2000' },
+      { name: 'Barry Allen', age: '20' },
+    ],
   },
   methods: {},
   computed: {},

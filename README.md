@@ -327,3 +327,40 @@ For `v-if`, if false, the element will get removed completely from the DOM.
       <p v-show="error">There is some error</p>
       <p v-show="success">Successfully completed</p>
     </div>
+
+### Looping with v-for
+
+We can loop through arrays and objects with a directive called `v-for`. We can use `template` instead of an element like `div` to avoid adding an extra element/div to the DOM while looping.
+
+    // ---- .js ----
+    new Vue({
+      el: '#looping-v-for',
+      data: {
+        superHeroes: ['Batman', 'Superman', 'Wonder Woman', 'Flash'],
+        realCharacters: [
+          { name: 'Bruce Wayne', age: '42' },
+          { name: 'Kal El', age: '1000' },
+          { name: 'Dianna', age: '2000' },
+          { name: 'Barry Allen', age: '20' },
+        ],
+      },
+    });
+
+    // ---- .html ----
+    <div id="looping-v-for">
+      <h1>Looping v-for</h1>
+      <ul>
+        <li v-for="superHero in superHeroes">{{ superHero }}</li>
+      </ul>
+    
+      <template v-for="(realCharacter, index) in realCharacters">
+        {{ index + 1 }}. {{ realCharacter.name }} - {{ realCharacter.age }}
+      </template>
+      <!-- By template, an extra div/element wont get added to the DOM -->
+    
+      <template v-for="realCharacter in realCharacters">
+        <div v-for="(val, key) in realCharacter">
+          <p>{{ key }} - {{ val }}</p>
+        </div>
+      </template>
+    </div>

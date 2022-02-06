@@ -87,7 +87,7 @@
   
     <h2>Example 1</h2>
     <div v-on:click="available = !available" v-bind:class="{available: available}">
-      <span>Ronaldo</span>
+      <span>Batman</span>
     </div>
   
     <h2>Example 2</h2>
@@ -95,7 +95,7 @@
     <button v-on:click="nearby = !nearby">Toggle nearby</button>
     <button v-on:click="available = !available">Toggle available</button>
     <div v-bind:class="compClasses">
-      <span>Ronaldo</span>
+      <span>Batman</span>
     </div>
   </div>
 
@@ -110,6 +110,24 @@
     <p v-show="error">There is some error</p>
     <!-- Another directive like if but as `v-if` completely removes the element from DOM, `v-show` only adds a style `display: none` and it remains in the DOM -->
     <p v-show="success">Successfully completed</p>
+  </div>
+
+  <div id="looping-v-for">
+    <h1>Looping v-for</h1>
+    <ul>
+      <li v-for="superHero in superHeroes">{{ superHero }}</li>
+    </ul>
+  
+    <template v-for="(realCharacter, index) in realCharacters">
+      {{ index + 1 }}. {{ realCharacter.name }} - {{ realCharacter.age }}
+    </template>
+    <!-- By template, an extra div/element wont get added to the DOM -->
+  
+    <template v-for="realCharacter in realCharacters">
+      <div v-for="(val, key) in realCharacter">
+        <p>{{ key }} - {{ val }}</p>
+      </div>
+    </template>
   </div>
 
   <script src="app.js"></script>
