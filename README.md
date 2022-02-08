@@ -418,3 +418,38 @@ Although, if the instances needs to communicate frequently, then we should recon
       <p>{{ greet }}</p>
       <button @click="changeTitle">Change App 1 title</button>
     </div>
+
+### Components
+
+
+We can create reusable components in Vue by using `Vue.component` function which accepts 2 arguments. The first would be the name of the component and second would be an object which will have the keys, `template` which holds the element, with properties, to return, a `data` key which is a function, returning an object with data properties, unlike Vue instance because it will create new copies of data and if we'd use the object, then as its gonna be reused in multiple places, that'd be pointing/referencing to the same object. Another key `methods` would be similar to that of Vue instance.
+
+All these methods and data properties can be accessed, as in html, in the template of the component.
+
+The component is called with its name in the component brackets.
+
+    // ---- .js ----
+    Vue.component('greeting', {
+      template: '<p>Heyy there, Im a {{ name }}. <button @click="changeName">Change Name</button></p>',
+      data: function () {
+        return {
+          name: 'Batman',
+        }
+      },
+      methods: {
+        changeName: function () {
+          this.name = 'Bruce';
+        },
+      }
+    });
+
+    // ---- .html ----
+    <div id="vue-app-one">
+      <h2>{{ title }}</h2>
+      <greeting></greeting>
+    </div>
+
+    <div id="vue-app-two">
+      <h2>{{ title }}</h2>
+      <greeting></greeting>
+    </div>
