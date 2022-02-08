@@ -371,6 +371,8 @@ We can have multiple view instances to separate out the logic (for examples sepa
 
 We can store the instances in variables in order to access and update their properties from the outside or other instances.
 
+Although, if the instances needs to communicate frequently, then we should reconsider our approaches as its better to keep them in the same instance
+
     // ---- .js ----
     var one = new Vue({
       el: '#vue-app-1',
@@ -404,7 +406,7 @@ We can store the instances in variables in order to access and update their prop
 
     two.title = 'Title changed from outside';
 
-    
+
     // ---- .html ----
     <div id="vue-app-1">
       <h2>{{ title }}</h2>
