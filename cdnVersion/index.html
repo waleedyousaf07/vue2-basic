@@ -130,6 +130,20 @@
     </template>
   </div>
 
+  <div id="multiple-instances">
+    <h1>Multiple Instances</h1>
+    <div id="vue-app-1">
+      <h2>{{ title }}</h2>
+      <p>{{ greet }}</p>
+    </div>
+  
+    <div id="vue-app-2">
+      <h2>{{ title }}</h2>
+      <p>{{ greet }}</p>
+      <button @click="changeTitle">Change App 1 title</button>
+    </div>
+  </div>
+
   <script src="app.js"></script>
 </body>
 

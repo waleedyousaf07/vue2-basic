@@ -364,3 +364,55 @@ We can loop through arrays and objects with a directive called `v-for`. We can u
         </div>
       </template>
     </div>
+
+### Multiple Instances
+
+We can have multiple view instances to separate out the logic (for examples separate instance for each widget etc.).
+
+We can store the instances in variables in order to access and update their properties from the outside or other instances.
+
+    // ---- .js ----
+    var one = new Vue({
+      el: '#vue-app-1',
+      data: {
+        title: 'Vue App 1',
+      },
+      methods: {},
+      computed: {
+        greet: function () {
+          return 'Hello from app 1';
+        },
+      },
+    });
+
+    var two = new Vue({
+      el: '#vue-app-2',
+      data: {
+        title: 'Vue App 2',
+      },
+      methods: {
+        changeTitle: function () {
+          one.title = 'Title changed by App 2';
+        },
+      },
+      computed: {
+        greet: function () {
+          return 'This is app 2';
+        },
+      },
+    });
+
+    two.title = 'Title changed from outside';
+
+    
+    // ---- .html ----
+    <div id="vue-app-1">
+      <h2>{{ title }}</h2>
+      <p>{{ greet }}</p>
+    </div>
+  
+    <div id="vue-app-2">
+      <h2>{{ title }}</h2>
+      <p>{{ greet }}</p>
+      <button @click="changeTitle">Change App 1 title</button>
+    </div>

@@ -118,3 +118,35 @@ new Vue({
   methods: {},
   computed: {},
 });
+
+var one = new Vue({
+  el: '#vue-app-1',
+  data: {
+    title: 'Vue App 1',
+  },
+  methods: {},
+  computed: {
+    greet: function () {
+      return 'Hello from app 1';
+    },
+  },
+});
+
+var two = new Vue({
+  el: '#vue-app-2',
+  data: {
+    title: 'Vue App 2',
+  },
+  methods: {
+    changeTitle: function () {
+      one.title = 'Title changed by App 2';
+    },
+  },
+  computed: {
+    greet: function () {
+      return 'This is app 2';
+    },
+  },
+});
+
+two.title = 'Title changed from outside';
