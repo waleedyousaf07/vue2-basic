@@ -24,6 +24,16 @@
     </div>
   </div>
 
+  <div id="refs">
+    <!-- Vue lets us reach into html templates and grab elements and access data about that element through refs -->
+    <h1>Refs</h1>
+  
+    <input type="text" ref="inputRef" />
+    <button @click="readRefs">Submit</button>
+    <p>Your fav food: {{ output }}</p>
+    <div ref="test">Test Div</div>
+  </div>
+
   <script src="app.js"></script>
 </body>
 

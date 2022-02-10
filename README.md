@@ -453,3 +453,31 @@ The component is called with its name in the component brackets.
       <h2>{{ title }}</h2>
       <greeting></greeting>
     </div>
+
+### Refs
+
+Vue lets us reach into html templates and grab elements and access data about that element through refs. We then can get the attributes of that element like `innerText, innerHTML, value` etc and use that in our Vue instance
+
+In order to give an element a reference, we just use the keyword `ref` in that element and give it any name. Then in our Vue instance, we can access it by `this.$refs` which will give us an object with all the refs on the page, the key will be the ref's name, and value would be the element and alot of properties on that
+
+    // ---- .js ----
+    new Vue({
+      el: '#refs',
+      data: {
+        output: 'Your fav food',
+      },
+      methods: {
+        readRefs: function () {
+          console.log(this.$refs);
+          console.log(this.$refs.test.innerText);
+          this.output = this.$refs.inputRef.value;
+        },
+      },
+      computed: {},
+    });
+
+    // ---- .html ----
+    <input type="text" ref="inputRef" />
+    <button @click="readRefs">Submit</button>
+    <p>Your fav food: {{ output }}</p>
+    <div ref="test">Test Div</div>

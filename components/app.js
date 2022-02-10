@@ -29,3 +29,18 @@ new Vue({
   methods: {},
   computed: {},
 });
+
+new Vue({
+  el: '#refs',
+  data: {
+    output: 'Your fav food',
+  },
+  methods: {
+    readRefs: function () {
+      console.log(this.$refs); // this.$refs will give us an object with all the refs on the page, the key will be the ref's name, and value would be the element and alot of properties on that
+      console.log(this.$refs.test.innerText);
+      this.output = this.$refs.inputRef.value;
+    },
+  },
+  computed: {},
+});
