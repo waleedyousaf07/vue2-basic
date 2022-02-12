@@ -679,7 +679,7 @@ For the local registeration, we'd import the resuable component in the script of
 
 ### Scoped CSS
 
-If we add some styles in the `style` section of `.vue`, they'll get applied to the components called in them also. Also, if the called component have any styles with same selectors, they'll override the callee's.
+If we add some styles in the `style` section of `.vue`, they'll get applied to the components called in them also. Also, if the called component have any styles with same selectors, they'll override the caller's.
 
 Therefore, we can use `scoped` in the style element which gives each component a unique identifier so that the styles are only applied to the elements of that component
 
@@ -688,3 +688,72 @@ Therefore, we can use `scoped` in the style element which gives each component a
         color: purple;
       }
     </style>
+
+### Props
+
+As in other frameworks, we can pass props to the components. While passing the prop in the element of the called component, we need to bind the prop so that its actual value can be passed instead of the string. The passed props can be received in the called component in the script in that object in a key `props`. 
+
+The value can either be a simple array of received props or it can be an object with the `key` as `prop name` and its value an object which can have multiple keys like `type` and `required` which are used for type checking and whether its a required prop or not.
+
+We can use these props in template and access this prop in our methods as we do with local data properties
+
+    // ---- Caller.vue ----
+
+    <template>
+      <div>
+        <app-superheroes :superheroes="superheroes"></app-superheroes> 
+      </div>
+    </template>
+
+    <script>
+    import Superheroes from './components/Superheroes.vue';    import Footer from './components/Footer.vue';
+
+    export default {
+      components: {
+        'app-superheroes': Superheroes,
+      },
+      data () {
+        return {
+          superheroes: [
+            { title: 'Batman', name: 'Bruce', show: false },
+            { title: 'Wonder Woman', name: 'Dianna', show: false },
+          ],
+        }
+      },
+    }
+    </script>
+
+    // ---- Callee.vue ---- (Superheroes.vue)
+
+    <template>
+      <div id="superheroes">
+        <ul>
+          <li v-for="superhero in superheroes" :key="superhero.title" @click="superhero.show = !superhero.show">
+            <h2>{{ superhero.title }}</h2>
+            <h3 v-show="superhero.show">{{ superhero.name }}</h3>
+          </li>
+        </ul>
+      </div>
+    </template>
+
+    <script>
+    export default {
+      // props: ['superheroes'],
+      
+      // To validate the prop we can do instead
+      props: {
+        superheroes: {
+          type: Array,
+          required: true,
+        }
+      },
+      data () {
+        return {}
+      },
+      methods: {
+        test: function () {
+          console.log('aaaa', this.superheroes);
+        }
+      }
+    }
+    </script>

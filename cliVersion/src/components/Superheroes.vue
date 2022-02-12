@@ -1,7 +1,7 @@
 <template>
   <div id="superheroes">
     <ul>
-      <li v-for="superhero in superheroes" :key="superhero" @click="superhero.show = !superhero.show">
+      <li v-for="superhero in superheroes" :key="superhero.title" @click="superhero.show = !superhero.show">
         <h2>{{ superhero.title }}</h2>
         <h3 v-show="superhero.show">{{ superhero.name }}</h3>
       </li>
@@ -11,17 +11,25 @@
 
 <script>
 export default {
-  data () {
-    return {
-      superheroes: [
-        { title: 'Batman', name: 'Bruce', show: false },
-        { title: 'Wonder Woman', name: 'Dianna', show: false },
-        { title: 'Superman', name: 'Kal El', show: false },
-        { title: 'Flash', name: 'Barry', show: false },
-        { title: 'Aquaman', name: 'Arthur', show: false },
-      ],
+  // props: ['superheroes'], // we can use this prop in template and access this prop in our methods as we do with data properties
+  
+  // To validate the prop we can do instead
+  props: {
+    superheroes: {
+      type: Array,
+      required: true,
     }
   },
+  data () {
+    return {
+      
+    }
+  },
+  methods: {
+    test: function () {
+      console.log('aaaa', this.superheroes);
+    }
+  }
 }
 </script>
 
