@@ -472,7 +472,7 @@ The component is called with its name in the component brackets.
       //   }
       // },
       // ^^ both are same
-      
+
       methods: {
         changeName: function () {
           this.name = 'Bruce';
@@ -518,3 +518,77 @@ In order to give an element a reference, we just use the keyword `ref` in that e
     <button @click="readRefs">Submit</button>
     <p>Your fav food: {{ output }}</p>
     <div ref="test">Test Div</div>
+
+### .vue
+
+The component can be created in a separate file, with the extension `.vue` where we'll have a `template` tag which will have all the HTML. The template can only have one child e.g. `div` and that can then have multiple subsequent children
+
+It'll have a `script` as we arent in a .js file and that script will return an object somewhat similar to that of `Vue.component`. 
+
+That object will have a `name` property which will have the name of the template and the `data` method whose values we can use in the `template` above. 
+
+This file can also have the `styles` for the `template` above.
+
+We can call this `.vue` file in our `Vue Instance` in our `.js` file which will render all this in our `.html`'s element whose `id/class` Vue instance has as its `el` attribute.
+
+    // ---- .html ----
+
+    <div id="app"></div>
+
+    // ---- .js ----
+
+    import Vue from 'vue'
+    import App from './App.vue'
+
+    new Vue({
+      el: '#app',
+      render: h => h(App)
+    })
+
+    // ---- .vue ----
+
+    <template>
+      <div id="app">
+        <img src="./assets/logo.png">
+        <h1>{{ title }}</h1>
+        <p>{{ greeting() }}</p>
+        <h2>Essential Links</h2>
+        <ul>
+          <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
+        </ul>
+      </div>
+    </template>
+
+    <script>
+    export default {
+      name: 'app',
+      data () {
+        return {
+          title: 'Welcome to Your Vue.js App'
+        }
+      },
+      methods: {
+        greeting: function () {
+          return 'Heyy you';
+        },
+      }
+    }
+    </script>
+
+    <style>
+    #app {
+      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 60px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    a {
+      color: #42b983;
+    }
+    </style>
