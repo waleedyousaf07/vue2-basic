@@ -11,6 +11,36 @@ CDN is the simplest way for smaller single page applications. We just need to Ad
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
+### Vue CLI
+
+We can setup by CLI in order to create a dev env workflow with webpack. Through this, we'd be able to:
+
+- Use ES6 features like imports
+- Compile and minify JS into one file which significantly improves loading speeds
+- We can use single file template
+- Compile everything on our machine instead of a browser
+- Live reload dev server
+
+We need to install node js as we'll be using npm
+
+After that, we can install vue (can install globally)
+
+    npm install -g vue-cli
+
+After installation, we can initialize our project by using some templates. They'll provide us simple, webpack, linited, testing integrated and their combination's templates. We can use as per our requirements by `vue init <template-name> <project-name>`
+
+    vue init webpack-simple my-vue-cli-basic
+
+After this, go to the directory where project is initilized like `cd <project-name>` and then run
+
+    npm install
+  
+to install all the npm packages and then run 
+
+    npm run dev
+
+which will start the app in a dev server
+
 ## Core
 
 A `framework` used to create `JS driven apps` for the `web`. As its based on JS, pages run into the browser. This makes it somewhat similar to React and Angular.
