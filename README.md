@@ -676,3 +676,15 @@ For the local registeration, we'd import the resuable component in the script of
       },
     }
     </script>
+
+### Scoped CSS
+
+If we add some styles in the `style` section of `.vue`, they'll get applied to the components called in them also. Also, if the called component have any styles with same selectors, they'll override the callee's.
+
+Therefore, we can use `scoped` in the style element which gives each component a unique identifier so that the styles are only applied to the elements of that component
+
+    <style scoped>
+      h1 {
+        color: purple;
+      }
+    </style>

@@ -20,6 +20,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+/* these styles will be shared between all of the components as this would output as same. Even styles in the nested superheroes component will override if it'll have any */
+h1 {
+  color: purple;
+}
 </style>
