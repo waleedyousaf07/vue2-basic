@@ -757,3 +757,9 @@ We can use these props in template and access this prop in our methods as we do 
       }
     }
     </script>
+
+### Primitive vs Referenced Types in context to Vue props
+
+Passing a reference type to another component is like passing its reference. Updating inside the callee will update the orginal data.
+
+Unlike the referenced, primitive will update a new copy instead of the original data.

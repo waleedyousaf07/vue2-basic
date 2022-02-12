@@ -6,6 +6,7 @@
         <h3 v-show="superhero.show">{{ superhero.name }}</h3>
       </li>
     </ul>
+    <!-- <button @click="deleteHero">Delete</button> -->
   </div>
 </template>
 
@@ -18,7 +19,7 @@ export default {
     superheroes: {
       type: Array,
       required: true,
-    }
+    },
   },
   data () {
     return {
@@ -26,9 +27,9 @@ export default {
     }
   },
   methods: {
-    test: function () {
-      console.log('aaaa', this.superheroes);
-    }
+    deleteHero: function () {
+      this.superheroes.pop(); // as referenced type, original data will mutate
+    },
   }
 }
 </script>

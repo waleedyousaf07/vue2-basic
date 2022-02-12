@@ -1,8 +1,8 @@
 <template>
   <div>
-    <app-header></app-header>
+    <app-header :title="title"></app-header>
     <app-superheroes :superheroes="superheroes"></app-superheroes> <!-- dont pass strings as values of props, instead bind them -->
-    <app-footer></app-footer>
+    <app-footer :title="title"></app-footer>
   </div>
 </template>
 
@@ -19,6 +19,7 @@ export default {
   },
   data () {
     return {
+      title: 'Superheroes',
       superheroes: [
         { title: 'Batman', name: 'Bruce', show: false },
         { title: 'Wonder Woman', name: 'Dianna', show: false },
