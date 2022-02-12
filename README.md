@@ -592,3 +592,87 @@ We can call this `.vue` file in our `Vue Instance` in our `.js` file which will 
       color: #42b983;
     }
     </style>
+
+### Nesting Components
+
+We can create multiple components to modularize our code. We can nest one component in another by either register the component which is to be used in the parent as global or local.
+
+The globally registered one can be used in other components too, apart from the onw where its registered and vice versa for the local.
+
+    // ---- ReusableComponent.vue ----
+
+    <template>
+      <ul>
+        <li v-for="superhero in superheroes" :key="superhero">{{ superhero }}</li>
+      </ul>
+    </template>
+
+    <script>
+    export default {
+      data () {
+        return {
+          superheroes: ['Batman', 'Wonder Woman', 'Superman'],
+        }
+      },
+    }
+    </script>
+
+For global, we can go the main.js and import that .vue component and then create that over here by using `Vue.component` and assigning it a name and passing this component `.vue`. After that, go the component where it needs to be used and just call it as a component in a tag with the name we gave in main.js and it will work
+
+    // ---- main.js ----
+
+    import Vue from 'vue'
+    import App from './App.vue'
+    import ReusableComponent from './ReusableComponent.vue'
+
+    Vue.component('superheroes', ReusableComponent);
+
+    new Vue({
+      el: '#app',
+      render: h => h(App)
+    })
+
+    // ---- App.vue ----
+
+    <template>
+      <div>
+        <h1>{{ title }}</h1>
+        <superheroes></superheroes>
+      </div>
+    </template>
+
+    <script>
+    export default {
+      data () {
+        return {
+          title: 'Super App',
+        }
+      },
+    }
+    </script>
+
+For the local registeration, we'd import the resuable component in the script of the one where we need it. Then, we'd define/register inside that exported object inside a key `components` which would be an object where the key will be the name of the component and the value would be the imported component itself
+
+    // ---- App.vue ----
+
+    <template>
+      <div>
+        <h1>{{ title }}</h1>
+        <superheroes></superheroes>
+      </div>
+    </template>
+
+    <script>
+    import Superheroes from './Superheroes.vue'
+
+    export default {
+      components: {
+        'superheroes': Superheroes,
+      },
+      data () {
+        return {
+          title: 'Super App',
+        }
+      },
+    }
+    </script>

@@ -1,22 +1,21 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <p>{{ greeting() }}</p>
+    <superheroes></superheroes>
   </div>
 </template>
 
 <script>
+import Superheroes from './Superheroes.vue'
+
 export default {
-  name: 'app',
+  components: {
+    'superheroes': Superheroes,
+  },
   data () {
     return {
-      title: 'Your first Vue file',
+      title: 'Super App',
     }
-  },
-  methods: {
-    greeting: function () {
-      return 'Heyy you';
-    },
   },
 }
 </script>
