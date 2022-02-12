@@ -466,6 +466,13 @@ The component is called with its name in the component brackets.
           name: 'Batman',
         }
       },
+      // data() {
+      //   return {
+      //     name: 'Batman',
+      //   }
+      // },
+      // ^^ both are same
+      
       methods: {
         changeName: function () {
           this.name = 'Bruce';
