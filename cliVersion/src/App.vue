@@ -1,28 +1,30 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
+    <app-header></app-header>
     <superheroes></superheroes>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
-import Superheroes from './Superheroes.vue'
+import Header from './components/Header.vue';
+import Superheroes from './components/Superheroes.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   components: {
+    'app-header': Header, // reason for not only saying header is that its already pre occupied as its an element/tag
     'superheroes': Superheroes,
+    'app-footer': Footer,
   },
   data () {
     return {
-      title: 'Super App',
+
     }
   },
 }
 </script>
 
-<style scoped>
-/* these styles will be shared between all of the components as this would output as same. Even styles in the nested superheroes component will override if it'll have any */
-h1 {
-  color: purple;
-}
+<style>
+
 </style>
