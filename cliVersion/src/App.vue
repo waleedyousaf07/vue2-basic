@@ -1,37 +1,23 @@
 <template>
   <div>
-    <app-header :title="title" @changeTitle="updateTitle($event)"></app-header>
-    <app-superheroes :superheroes="superheroes"></app-superheroes> <!-- dont pass strings as values of props, instead bind them -->
-    <app-footer :title="title"></app-footer>
+    <h1>Vue App</h1>
+    <!-- <app-superheroes-root :title="title" @changeTitle="updateTitle($event)"></app-superheroes-root> -->
+    <app-form-helper-root :title="title" @changeTitle="updateTitle($event)"></app-form-helper-root>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue';
-import Superheroes from './components/Superheroes.vue';
-import Footer from './components/Footer.vue';
+import SuperheroesRoot from './components/superheroes/SuperheroesRoot.vue';
+import FormHelperRoot from './components/formHelper/FormHelperRoot.vue';
 
 export default {
   components: {
-    'app-header': Header, // reason for not only saying header is that its already pre occupied as its an element/tag
-    'app-superheroes': Superheroes,
-    'app-footer': Footer,
+    'app-superheroes-root': SuperheroesRoot,
+    'app-form-helper-root': FormHelperRoot,
   },
   data () {
     return {
-      title: 'Superheroes',
-      superheroes: [
-        { title: 'Batman', name: 'Bruce', show: false },
-        { title: 'Wonder Woman', name: 'Dianna', show: false },
-        { title: 'Superman', name: 'Kal El', show: false },
-        { title: 'Flash', name: 'Barry', show: false },
-        { title: 'Aquaman', name: 'Arthur', show: false },
-      ],
-    }
-  },
-  methods: {
-    updateTitle: function (updatedTitle) { // received from event listener where passed `$event`
-      this.title = updatedTitle;
+
     }
   },
 }
