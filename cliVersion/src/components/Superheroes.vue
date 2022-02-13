@@ -30,7 +30,33 @@ export default {
     deleteHero: function () {
       this.superheroes.pop(); // as referenced type, original data will mutate
     },
-  }
+  },
+
+  // lifecycle hooks
+  // beforeCreate() {
+  //   alert('before create');
+  //   console.log('lch - before create');
+  // },
+  // created() {
+  //   alert('created');
+  //   console.log('lch - created');
+  // },
+  // beforeMount() {
+  //   alert('beforeMount');
+  //   console.log('lch - beforeMount');
+  // },
+  // mounted() {
+  //   alert('mounted');
+  //   console.log('lch - mounted');
+  // },
+  // beforeUpdate() {
+  //   alert('beforeUpdate');
+  //   console.log('lch - beforeUpdate');
+  // },
+  // updated() {
+  //   alert('updated');
+  //   console.log('lch - updated');
+  // },
 }
 </script>
 

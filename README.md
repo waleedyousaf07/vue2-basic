@@ -820,3 +820,50 @@ For the component which will emit the event, we can do similar stuff for emittin
       });
     },
     ...
+
+### Lifecycle Hooks
+
+When we create a new vuew instance or component, it goes through specific kind of lifecycle. Along this lifecycle, we have access to certian function or methods that fires at certain points. These are lifecycle hooks.
+
+- beforeCreate: When we create a Vue instance, the first lifecycle `beforeCreate` is called before creation. 
+
+After this instance observes any data so before this we dont have access to any `data` property on the instance. 
+
+After that, the events are initialized.
+
+- created: And after those, another lifecycle hook triggers i.e. `created` which fires when the component has been created so any code we need to execute after the component's creation, we can add it here. We have access to all the `data` etc. This generally is a good point to reach out for data if needed like from the DB. `mounted` is also used for same purpose but better to use this
+
+After that, it checks for `el` option if present, if yes, it checks if it has `template` option and if no `el` option it waits for `vm.$mounted(el)` is called and then checks for template.
+
+After that, if it has a `template`, it compiles template into `render` function and if not it compiles `el`;s outer HTML as `template`.
+
+After compilation, when its about to mount the DOM
+
+- beforeMount: so if we need to do anything just before mounting, we can use this but its rarely used.
+
+After this, the `vm.Sel` is created and its replaced with `el`.
+
+- mounted: When it has mounted, we get this lifecycle hook. At this point, we have access to the things in DOM cuz its mounted. So we can reach and manipulate anything in DOM.
+
+After this, we can do a couple of things like we can either update the component or instance by changing the data in it we change the state
+
+- beforeUpdate: When the data is changed and before update, we get this lifecycle hook `beforeUpdate`
+
+- updated: After the update is complete, we get another lifecycle method `updated` where we get/access the updated DOM
+
+Apart from the update, the other thing that can happen after `mounted` is that the component can be destroyed.
+
+- beforeDestroy: So here we can execute any code which we wanna before destroying the component.
+
+Then, it tears down any kind of components, events, listeners, watchers child components or like anything associated with that component/instance
+
+- destroyed: Once its destroyed, we get access to this where we can have cleanups
+
+    ...
+    data () {return {}},
+    methods: {},
+    beforeCreate() {
+      alert('before create');
+      console.log('lch - before create');
+    },
+    ...
