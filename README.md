@@ -50,6 +50,8 @@ What makes it different from them is:
 - It only takes up `16kb on production version` so its lightweight/lean and `loads quickly`
 - It has a very `high run-time performance`
 - Although being lean and performant, it maintains a lot of features like `components, filters, forms, data bindings, etc`
+- Separation of HTML, CSS and JS in one file with `separate sections` allowing to get HTML from designers
+- `Native Script` is available for mobile application development
 
 ### Vue Instance
 
