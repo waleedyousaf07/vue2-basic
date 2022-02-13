@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-header :title="title"></app-header>
+    <app-header :title="title" @changeTitle="updateTitle($event)"></app-header>
     <app-superheroes :superheroes="superheroes"></app-superheroes> <!-- dont pass strings as values of props, instead bind them -->
     <app-footer :title="title"></app-footer>
   </div>
@@ -27,6 +27,11 @@ export default {
         { title: 'Flash', name: 'Barry', show: false },
         { title: 'Aquaman', name: 'Arthur', show: false },
       ],
+    }
+  },
+  methods: {
+    updateTitle: function (updatedTitle) { // received from event listener where passed `$event`
+      this.title = updatedTitle;
     }
   },
 }

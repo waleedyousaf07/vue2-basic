@@ -763,3 +763,34 @@ We can use these props in template and access this prop in our methods as we do 
 Passing a reference type to another component is like passing its reference. Updating inside the callee will update the orginal data.
 
 Unlike the referenced, primitive will update a new copy instead of the original data.
+
+### Events (child to parent)
+
+One use of the events can be to update data in the parent. As the primitive types dont get updated in the child when passed as the props, one way can be to tie them up with an event and trigger/emit it from child and the parent will keep on listening from where the component is called like other events like `click` etc. Then when that element is triggered/emitted, parent can take any action like updating where the updated data is passed.
+
+While emitting from the child, we can use `this.$emit` function where the first param is the name of the event like the js click event and the second parameter can be the data we need to pass to the parent.
+
+    // ---- <child>.vue ----
+    ...
+    methods: {
+      changeTitle: function () {
+        // this.title = 'Superheroes MCU'; 
+        this.$emit('changeTitle', 'Superheroes MCU');
+      }
+    },
+    ...
+
+    // ---- <parent>.vue ----
+    <template>
+      <div>
+        <app-header :title="title" @changeTitle="updateTitle($event)"></app-header>
+      </div>
+    </template>
+
+    ...
+    methods: {
+      updateTitle: function (updatedTitle) {
+        this.title = updatedTitle;
+      }
+    },
+    ...
