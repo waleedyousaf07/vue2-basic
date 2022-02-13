@@ -5,12 +5,19 @@
 </template>
 
 <script>
+import { bus } from '../main';
+
 export default {
   props: ['title'],
   data () {
     return {
       copyright: 'Copyright 2022',
     }
+  },
+  created() { // lifecycle hook
+    bus.$on('titleChanged', (data) => {
+      this.title = data;
+    });
   },
 }
 </script>

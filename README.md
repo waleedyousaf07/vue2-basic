@@ -794,3 +794,29 @@ While emitting from the child, we can use `this.$emit` function where the first 
       }
     },
     ...
+
+### Event Bus
+
+Previously for updating the data, we used events which updated the parent and then subsequently re rendering all the children with the fresh copies. What if we dont wanna go this route, cuz we are updating the main data and also there is back and forth to parent which isnt required.
+
+We can use `event bus` which is a simple vue instance which we can create in main.js and then import in all the components where its needed to emit or listen.
+
+For the component which will emit the event, we can do similar stuff for emitting but not using the emit of `this` but `bus` as we are emitting on the bus. Also if we are updating something, we have to do it along emitting as that will only change/fire where its being listened and not this component
+
+    // ---- <Emitter>.vue ----
+
+    ...
+    this.title = 'Superheroes MCU';
+    bus.$emit('titleChanged', 'Superheroes MCU');
+    ...
+
+    // ---- <Receptor>.vue ----
+
+    ...
+    data () {},
+    created() { // lifecycle hook
+      bus.$on('titleChanged', (data) => {
+        this.title = data;
+      });
+    },
+    ...
