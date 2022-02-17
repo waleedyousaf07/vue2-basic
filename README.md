@@ -869,3 +869,30 @@ Then, it tears down any kind of components, events, listeners, watchers child co
       console.log('lch - before create');
     },
     ...
+
+### Slots
+
+We can define the logical components here, they'll output in the component where passed as they are layed out and styled. So the logic is separate out. Also we can reuse the same styled and structured component to render different forms. For passing an HTML template as props to the component, we can pass using bind but we can use slots. There are two ways, one as passing as HTML inside the component and then using that in the called component.
+
+Even though the slot will actually get called in the `called` component, still it would read the dynamic properties of the component where its defined
+
+    // ---- <caller>.vue ---
+ 
+    <template>
+      <div>
+        <app-form-helper>
+          <h2 slot="title">{{ title }}</h2> // title will ready `caller`'s data properties
+          <p slot="text">I am the paragraph text for the slot</p>
+        <app-form-helper>
+      </div>
+    </template>
+
+    // ---- <called>.vue ---
+    
+    <template>
+      <div>
+        <slot name="title"></slot>
+        <h1>Form Helper</h1>
+        <slot name="text"></slot>
+      </div>
+    </template>
