@@ -896,3 +896,38 @@ Even though the slot will actually get called in the `called` component, still i
         <slot name="text"></slot>
       </div>
     </template>
+
+### Dynamic Components
+
+If we need to switch between components against a user interaction, then instead of calling them, we can use a vue tag `component`.
+
+When we switch between components, components are destroyed so `keep-alive` can be used to maintain the state while switching.
+
+    // ---- <caller>.vue ----
+
+    <template>
+      <div>
+        <keep-alive>
+          <component :is="component"></component>
+        </keep-alive>
+        <button @click="component='app-form-one'"> Show form one</button>
+        <button @click="component='app-form-two'"> Show form two</button>
+      </div>
+    </template>
+
+    <script>
+    import FormOne from './FormOne.vue';
+    import FormTwo from './FormTwo.vue';
+
+    export default {
+      components: {
+        'app-form-one': FormOne,
+        'app-form-two': FormTwo,
+      },
+      data () {
+        return {
+          component: 'app-form-one',
+        }
+      },
+    }
+    </script>
