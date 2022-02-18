@@ -83,6 +83,13 @@ We can access these `data` and `methods` properties in HTML by using this declar
       <p>Job: {{ job }}</p>
     </div>
 
+### Directives
+
+- v-on
+- v-for
+- v-if
+- v-model
+
 ### Binding
 
 In order to bind the element's properties to the Vue, we use `v-bind:` before the property and then pass the Vue data attribute in the quotes and Vue will pick its value. 
@@ -932,3 +939,50 @@ When we switch between components, components are destroyed so `keep-alive` can 
       },
     }
     </script>
+
+### Custom Directives
+
+- v-on
+- v-for
+- v-if
+- v-model
+
+We can also define our custom directives. We can define them globally (can define in main.js) by using `Vue.directive` which will be a method taking two args, one is the `name of the directive` and the other is an object which will have lifecycle methods like `bind`, which fires as soon as the directive is bound to the element. It takes three args `el, binding, vnode`.
+
+`el` gives us the HTML element and we can update it. `binding` gives us value, if any, which the directive has while calling like `v-my-directive="'narrow'"` or the args which are defined after the `:` like `v-my-directive.columns`. `vnode` this refers to the virtual node in the DOM. 
+
+    // ---- main.js ----
+
+    ...
+    Vue.directive('rainbow', {
+      bind(el, binding, vnode) {
+        el.style.color = "#" + Math.random().toString().slice(2, 8);
+      }
+    });
+
+    Vue.directive('theme', {
+      bind(el, binding, vnode) {
+        if (binding.value === 'wide') {
+          el.style.maxWidth = '1200px';
+        } else if (binding.value === 'narrow') {
+          el.style.maxWidth = '600px';
+        }
+        if (binding.arg == 'column') {
+          el.style.background = '#ddd';
+          el.style.padding = '20px';
+        }
+      }
+    });
+    ...
+
+    // ---- <called>.vue ----
+
+    <template>
+      <div id="show-blogs" v-theme:column="'narrow'">
+        <h1>All Blogs</h1>
+        <div class="single-blog" v-for="blog in blogs" :key="blog.id">
+          <h2 v-rainbow>{{ blog.title }}</h2>
+          <article>{{ blog.body }}</article>
+        </div>
+      </div>
+    </template>
