@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-// import SuperHeroesApp from './components/superheroes/SuperHeroesRoot.vue'
+import VueResource from 'vue-resource'; // To make HTTP requests, we could use fetch etc aswell
 
 export const bus = new Vue();
+
+Vue.use(VueResource);
 
 new Vue({
   el: '#app',

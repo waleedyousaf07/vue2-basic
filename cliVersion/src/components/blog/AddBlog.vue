@@ -1,7 +1,7 @@
 <template>
   <div id="add-blog">
     <h2>Add a New Blog Post</h2>
-    <form>
+    <form v-if="!submitted">
       <label>Blog Title:</label>
       <input type="text" v-model.lazy="blog.title" required /> <!-- v-model will bind to the data property and update it with each key press. But if we dont want that, we can use an input modifier i.e. lazy which will only update them after `tab` is pressed -->
       <label>Blog Content:</label>
@@ -20,7 +20,11 @@
       <select v-model="blog.author">
         <option v-for="author in authors" :key="author">{{ author }}</option>
       </select>
+      <button @click.prevent="post">Add Blog</button>
     </form>
+    <div v-if="submitted">
+      <h3>Post added successfully</h3>
+    </div>
     <div id="preview">
       <h3>Preview Blog</h3>
       <p>Blog title: {{ blog.title }}</p>
@@ -49,8 +53,22 @@ export default {
         author: '',
       },
       authors: ['Batman', 'WW', 'Superman'],
-    }
+      submitted: false,
+    };
   },
+  methods: {
+    post: function () {
+      // after installing `vue-resource`, now we have access to this `http`
+      this.$http.post('http://jsonplaceholder.typicode.com/posts', {
+        userId: 1,
+        title: this.blog.title,
+        body: this.blog.content,
+      }).then((data) => {
+        this.submitted = true;
+        console.log('aaa', data);
+      })
+    },
+  }
 }
 </script>
 
