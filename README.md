@@ -221,7 +221,7 @@ The keyboard modifiers are:
 
 ### Two-way data binding
 
-Instead of listening to an event on an element and then echo or store that latest value to another property by setting it manually, we can use two-way data binding by using the `v-model`
+Instead of listening to an event on an element and then echo or store that latest value to another property by setting it manually, we can use two-way data binding by using the `v-model`. If we dont want to update while typing or on each key up event, we can use a modifier `lazy` which will update after pressing tab.
 
     // ---- .js ----
     new Vue({
@@ -241,7 +241,7 @@ Instead of listening to an event on an element and then echo or store that lates
     <input type="text" v-model="name" />
     <span>{{ name }}</span>
     <label>Age:</label>
-    <input type="text" v-model="age" />
+    <input type="text" v-model.lazy="age" />
     <span>{{ age }}</span>
   </div>
 
@@ -708,7 +708,8 @@ We can use these props in template and access this prop in our methods as we do 
     </template>
 
     <script>
-    import Superheroes from './components/Superheroes.vue';    import Footer from './components/Footer.vue';
+    import Superheroes from './components/Superheroes.vue';    
+    import Footer from './components/Footer.vue';
 
     export default {
       components: {
