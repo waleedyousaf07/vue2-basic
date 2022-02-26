@@ -951,6 +951,18 @@ We can also define our custom directives. We can define them globally (can defin
 
 `el` gives us the HTML element and we can update it. `binding` gives us value, if any, which the directive has while calling like `v-my-directive="'narrow'"` or the args which are defined after the `:` like `v-my-directive.columns`. `vnode` this refers to the virtual node in the DOM. 
 
+    // ---- <called>.vue ----
+
+    <template>
+      <div id="show-blogs" v-theme:column="'narrow'">
+        <h1>All Blogs</h1>
+        <div class="single-blog" v-for="blog in blogs" :key="blog.id">
+          <h2 v-rainbow>{{ blog.title }}</h2>
+          <article>{{ blog.body }}</article>
+        </div>
+      </div>
+    </template>
+
     // ---- main.js ----
 
     ...
@@ -975,17 +987,23 @@ We can also define our custom directives. We can define them globally (can defin
     });
     ...
 
-    // ---- <called>.vue ----
+    // OR
+    // <caller>.vue (locally)
 
-    <template>
-      <div id="show-blogs" v-theme:column="'narrow'">
-        <h1>All Blogs</h1>
-        <div class="single-blog" v-for="blog in blogs" :key="blog.id">
-          <h2 v-rainbow>{{ blog.title }}</h2>
-          <article>{{ blog.body }}</article>
-        </div>
-      </div>
-    </template>
+    data () {
+      return {
+        blogs: [],
+        search: '',
+      };
+    },
+    methods: {},
+    directives: {
+      'rainbow': {
+        bind(el, binding, vnode) {
+          el.style.color = "#" + Math.random().toString().slice(2, 8);
+        },
+      },
+    },
 
 ### Filters
 
@@ -993,7 +1011,20 @@ If we want to manipulate the data properties for the DOM w/o updating the actual
 
 It can be done by appending the pipe followed by the name of the filter. The defination of the filter can be at a somewhat global place like main.js.
 
-    // ---- main.js ----
+    // ---- <caller>.vue ----
+
+    <template>
+      <div id="show-blogs" v-theme:column="'narrow'">
+        <h1>All Blogs</h1>
+        <div class="single-blog" v-for="blog in blogs" :key="blog.id">
+          <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
+          <article>{{ blog.body | snippet }}</article>
+        </div>
+      </div>
+    </template>
+    ...
+
+    // ---- main.js (globally) ----
 
     Vue.filter('to-uppercase', function (value) {
       return value.toUpperCase();
@@ -1009,15 +1040,25 @@ It can be done by appending the pipe followed by the name of the filter. The def
       render: h => h(App)
     });
 
-    // ---- <caller>.vue ----
+    // OR
+    // ---- <caller>.vue (locally) ----
+    data () {
+      return {
+        blogs: [],
+        search: '',
+      };
+    },
+    methods: {},
+    filters: {
+      'snippet': function(value) {
+        return value.slice(0, 100) + '...';
+      },
 
-    <template>
-      <div id="show-blogs" v-theme:column="'narrow'">
-        <h1>All Blogs</h1>
-        <div class="single-blog" v-for="blog in blogs" :key="blog.id">
-          <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
-          <article>{{ blog.body | snippet }}</article>
-        </div>
-      </div>
-    </template>
-    ...
+      // both are same
+      // 'to-uppercase': function(value) {
+      //   return value.toUpperCase();
+      // },
+      toUppercase(value) {
+        return value.toUpperCase();
+      },
+    },

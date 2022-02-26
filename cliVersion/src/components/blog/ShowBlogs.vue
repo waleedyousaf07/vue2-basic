@@ -30,6 +30,25 @@ export default {
       });
     },
   },
+  filters: {
+    'snippet': function(value) {
+      return value.slice(0, 100) + '...';
+    },
+
+    // 'to-uppercase': function(value) {
+    //   return value.toUpperCase();
+    // },
+    toUppercase(value) {
+      return value.toUpperCase();
+    },
+  },
+  directives: {
+    'rainbow': {
+      bind(el, binding, vnode) {
+        el.style.color = "#" + Math.random().toString().slice(2, 8);
+      },
+    },
+  },
   created() {
     this.$http.get('http://jsonplaceholder.typicode.com/posts').then((data) => {
       this.blogs = data.body.splice(0, 10);
