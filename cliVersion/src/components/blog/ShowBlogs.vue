@@ -2,8 +2,8 @@
   <div id="show-blogs" v-theme:column="'narrow'"> <!-- We need to pass string as we can pass objects etc aswell. After `:`, the thing is args  -->
     <h1>All Blogs</h1>
     <div class="single-blog" v-for="blog in blogs" :key="blog.id">
-      <h2 v-rainbow>{{ blog.title }}</h2> <!-- our custom directive we created globally - this will give the element a random color -->
-      <article>{{ blog.body }}</article>
+      <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2> <!-- our custom directive we created globally - this will give the element a random color -->
+      <article>{{ blog.body | snippet }}</article>
     </div>
   </div>
 </template>

@@ -986,3 +986,38 @@ We can also define our custom directives. We can define them globally (can defin
         </div>
       </div>
     </template>
+
+### Filters
+
+If we want to manipulate the data properties for the DOM w/o updating the actual data property, we can use filters.
+
+It can be done by appending the pipe followed by the name of the filter. The defination of the filter can be at a somewhat global place like main.js.
+
+    // ---- main.js ----
+
+    Vue.filter('to-uppercase', function (value) {
+      return value.toUpperCase();
+    });
+
+    Vue.filter('snippet', function (value) {
+      return value.slice(0, 100) + '...';
+    });
+
+    // Main Vue instance
+    new Vue({
+      el: '#app',
+      render: h => h(App)
+    });
+
+    // ---- <caller>.vue ----
+
+    <template>
+      <div id="show-blogs" v-theme:column="'narrow'">
+        <h1>All Blogs</h1>
+        <div class="single-blog" v-for="blog in blogs" :key="blog.id">
+          <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
+          <article>{{ blog.body | snippet }}</article>
+        </div>
+      </div>
+    </template>
+    ...
