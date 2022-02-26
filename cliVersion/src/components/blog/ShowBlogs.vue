@@ -4,7 +4,7 @@
     <input type="text" v-model="search" placeholder="search blogs" />
     <div class="single-blog" v-for="blog in filteredBlogs" :key="blog.id">
       <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2> <!-- our custom directive we created globally - this will give the element a random color -->
-      <article>{{ blog.body | snippet }}</article>
+      <article>{{ blog.content | snippet }}</article>
     </div>
   </div>
 </template>
@@ -47,8 +47,14 @@ export default {
   },
   mixins: [searchMixin],
   created() {
-    this.$http.get('http://jsonplaceholder.typicode.com/posts').then((data) => {
-      this.blogs = data.body.splice(0, 10);
+    this.$http.get('https://vue2-basic-default-rtdb.firebaseio.com/posts.json').then((data) => {
+      return data.json();
+    }).then((data) => {
+      let blogsArray = [];
+      for (let key in data) {
+        blogsArray.push({ ...data[key], id: key });
+      }
+      this.blogs = blogsArray;
     });
   }
 }

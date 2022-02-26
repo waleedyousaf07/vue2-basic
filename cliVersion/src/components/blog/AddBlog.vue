@@ -59,11 +59,7 @@ export default {
   methods: {
     post: function () {
       // after installing `vue-resource`, now we have access to this `http`
-      this.$http.post('http://jsonplaceholder.typicode.com/posts', {
-        userId: 1,
-        title: this.blog.title,
-        body: this.blog.content,
-      }).then((data) => {
+      this.$http.post('https://vue2-basic-default-rtdb.firebaseio.com/posts.json', this.blog).then((data) => {
         this.submitted = true;
         console.log('aaa', data);
       })
