@@ -53,6 +53,20 @@ What makes it different from them is:
 - Separation of HTML, CSS and JS in one file with `separate sections` allowing to get HTML from designers
 - `Native Script` is available for mobile application development
 
+### React vs Vue
+
+Both have some similarities and some differences.
+
+Similarities are:
+- Both have vDOM
+- Provide reactive and composable view components
+- Maintain focus in the core library, with concerns such as routing and global state management handled by companion libraries
+- Both are fast and performant
+
+Differences are:
+- React updates the whole children tree if the compoent is not a pure component or componentShouldUpdate is written properly but Vue takes care of this by itself
+- React leverages JSX in render function and Vue has templates although it also supports render functions and JSX
+
 ### Vue Instance
 
 An app can have one or more instances. Each instance has a property `el` through which any kind of interactivity, event handling or data binding is going to be controlled. 
