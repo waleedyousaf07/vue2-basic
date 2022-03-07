@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueResource from 'vue-resource'; // To make HTTP requests, we could use fetch etc aswell
+import { store } from './store/store';
 
 export const bus = new Vue();
 
@@ -28,6 +29,7 @@ Vue.filter('to-uppercase', function (value) {
 
 // Main Vue instance
 new Vue({
+  store,
   el: '#app',
   render: h => h(App),
 });
