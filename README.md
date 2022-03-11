@@ -674,7 +674,7 @@ For global, we can go the main.js and import that .vue component and then create
     }
     </script>
 
-For the local registeration, we'd import the resuable component in the script of the one where we need it. Then, we'd define/register inside that exported object inside a key `components` which would be an object where the key will be the name of the component and the value would be the imported component itself
+For the local registration, we'd import the resuable component in the script of the one where we need it. Then, we'd define/register inside that exported object inside a key `components` which would be an object where the key will be the name of the component and the value would be the imported component itself
 
     // ---- App.vue ----
 
