@@ -903,14 +903,14 @@ Even though the slot will actually get called in the `called` component, still i
     <template>
       <div>
         <app-form-helper>
-          <h2 slot="title">{{ title }}</h2> // title will ready `caller`'s data properties
+          <h2 slot="title">{{ title }}</h2> // title will read `caller`'s data properties
           <p slot="text">I am the paragraph text for the slot</p>
         <app-form-helper>
       </div>
     </template>
 
     // ---- <called>.vue ---
-    
+
     <template>
       <div>
         <slot name="title"></slot>
